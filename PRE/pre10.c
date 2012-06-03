@@ -25,7 +25,7 @@ x = y;
 y = tmp;
 */
 
-/* ALREADY BAD */
+/* AGAIN BAD */
 
 /*
  * Swaps two values.

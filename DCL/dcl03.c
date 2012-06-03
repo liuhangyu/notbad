@@ -24,7 +24,7 @@ struct timer {
   #error "DATA must be at offset 4"
 #endif
 
-/* ALREADY NOT BAD */
+/* AGAIN NOT BAD */
 
 struct timer {
   uint8_t MODE;
