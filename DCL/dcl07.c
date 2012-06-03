@@ -1,69 +1,25 @@
-/* Include the appropriate type information in function declarators */
+/* Properly encode relationships in constant definitions */
 
 // === EXAMPLE 1 ==============================================================
 
 /* BAD */
 
-int max(a, b)
-int a, b;
-{
-  return a > b ? a : b;
-}
+enum { IN_STR_LEN=18, OUT_STR_LEN=20 };
 
 /* NOT BAD */
 
-int max(int a, int b) {
-  return a > b ? a : b;
-}
+enum { IN_STR_LEN=18, OUT_STR_LEN=IN_STR_LEN+2 };
 
 // === EXAMPLE 2 ==============================================================
 
 /* BAD */
 
-/* file_a.c source file */
-int func(int one, int two, int three){
-  printf("%d %d %d", one, two, three);
-  return 1;
-}
-
-/* file_b.c source file */
-func(1, 2);
+enum { ADULT_AGE=18 };
+ 
+/* misleading, relationship established when none exists */
+enum { ALCOHOL_AGE=ADULT_AGE+3 };
 
 /* NOT BAD */
 
-/* file_b.c source file */
-int func(int, int, int);
- 
-func(1, 2, 3);
-
-// === EXAMPLE 3 ==============================================================
-
-/* BAD */
-
-int add(int x, int y, int z) {
-   return x + y + z;
-}
- 
-int main(int argc, char *argv[]) {
-   int (*fn_ptr) (int, int);
-   int res;
-   fn_ptr = add;
-   res = fn_ptr(2, 3);  /* incorrect */
-   /* ... */
-   return 0;
-}
-
-/* NOT BAD */
-
-int add(int x, int y, int z) {
-   return x + y + z;
-}
- 
-int main(int argc, char *argv[]) {
-   int (*fn_ptr) (int, int, int) ;
-   int res;
-   fn_ptr = add;
-   res = fn_ptr(2, 3, 4);
-   /* ... */
-   return 0;
-}
+enum { ADULT_AGE=18 };
+enum { ALCOHOL_AGE=21 };
