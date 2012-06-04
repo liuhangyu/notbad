@@ -1,7 +1,5 @@
 /* Implement abstract data types using opaque types */
 
-// === EXAMPLE 1 ==============================================================
-
 /* BAD */
 
 struct string_mx {
